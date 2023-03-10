@@ -1,4 +1,4 @@
-package servlets_jsp;
+package Adlister;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -6,13 +6,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
 
-@WebServlet(name = "CorrectServlet", urlPatterns = "/correct")
-public class CorrectServlet extends HttpServlet {
+
+@WebServlet(name = "AdsServlet", urlPatterns = "/ads")
+public class AdsServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        request.getRequestDispatcher("servlets_jsp/result.jsp").forward(request, response);
+        //get ads
+        List<Ad> ads = AdsDaoFactory.getAdsDao().all();
+
+        request.setAttribute("ads", ads);
+
+        request.getRequestDispatcher("/ads/index.jsp").forward(request, response);
     }
 
 

@@ -5,12 +5,6 @@
   Time: 10:23 AM
   To change this template use File | Settings | File Templates.
 --%>
-<%
-    String uname = request.getParameter("uname");
-    String pass = request.getParameter("pass");
-
-%>
-
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
@@ -18,11 +12,10 @@
 <body>
 <%@ include file="partials/navbar.jsp" %>
 
-<%@ include file="partials/jumbotron.jsp" %>
 
 
 
-<form ACTION="login.jsp" METHOD="POST">
+<form ACTION="/login" METHOD="POST" id="login">
     <label for="uname">Username:</label><br>
     <input type="text" id="uname" name="uname"><br>
     <label for="pass">Password:</label><br>

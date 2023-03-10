@@ -14,3 +14,7 @@ body {
 }
 
 #solid {border-style: solid;}
+
+#login {
+    margin: 100px;
+}
