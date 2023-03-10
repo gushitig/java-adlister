@@ -10,6 +10,7 @@ import java.io.Serializable;
 @ToString
 @AllArgsConstructor
 public class Quote implements Serializable {
+    private int id;
     private String author;
     private String content;
 }

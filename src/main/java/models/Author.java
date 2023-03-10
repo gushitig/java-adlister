@@ -10,6 +10,7 @@ import java.io.Serializable;
 @ToString
 @AllArgsConstructor
 public class Author implements Serializable {
+    private int id;
     private String firstName;
     private String lastName;
 
