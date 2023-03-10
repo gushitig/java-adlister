@@ -1,0 +1,78 @@
+-JavaBeans represent the entities in our application
+-Usually each entity is represented by a database table
+
+
+A JavaBean, or bean, is a Java class that:
+-provides a zero-argument constructor
+-has getters and setters for all instance variables
+-implements the Serializable or Externalizable interface
+    -Serializable - this class knows how to turn itself into a series of bytes or characters (ex: strings and arrays lists are automatically serializable)
+        -if you make your own class, you need to make it serializable, its not automatic
+
+-example of a bean:
+
+public class Employee implements Serializable {
+    private long empNo;
+    private String firstName;
+    private String lastName;
+    private char gender;
+    private Date birthDate;
+    private Date hireDate;
+
+    public Employee() {  }
+
+    // getters and setters
+}
+
+-basically just have to add implements Serializable, bc all the fields are already serializable
+
+-lombok - boiler plate code taken care of for you - does the following for you:
+@NoArgsConstructor
+@Setter
+@Getter
+@ToString
+@AllArgsConstructor
+
+
+
+@NoArgsConstructor
+@Setter
+@Getter
+@ToString
+@AllArgsConstructor
+public class Puppy implements Serializable {
+    private String name;
+
+
+
+}
+
+**Java tip: keep all the instance variables in one place, typically up top of the method
+
+add private Puppy puppy to the Person class
+    -we already know Puppy is serializable bc we made it that way
+
+    in main method of person:
+    Puppy spot = new Puppy ("Spot");
+    Person bob = new Person("Bob", 42, spot);
+
+    sout him and see spot
+
+    Puppy rover = new Puppy ("Rover");
+    bob.setPuppy(rover);
+
+    sout him and see rover now instead
+
+    -called composition - composing one object w another object
+
+- to have multiple puppies make an array list
+
+    private ArrayList<Puppy> chaos;
+
+
+
+
+
+
+
+
