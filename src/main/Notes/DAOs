@@ -1,0 +1,35 @@
+-data access object (DAO) or data access class - class to handle our interactions with the database
+-job is to hook up your objects w some kind of data source
+
+-It is common to design DAOs behind an interface, meaning that we create an interface that describes what the DAO does, or what operations it supports, and a class that implements the interface to actually access the data.
+-ex:
+public interface Ads {
+    List<Ad> all(); // find all the ads records
+    Ad findOne(long id); // find an individual record by its id
+    void insert(Ad ad); // insert a new record
+    void update(Ad ad); // update an existing record
+    void destroy(Ad ad); // remove a record
+}
+-will revisit this next week when we actually hook up to a database
+
+-an abstraction like this allows you to create this now before the database is ready and allows you to swap out a file or some small amount of data w the db versiononce its ready
+
+-CRUD - the 4 basic operations when working w data
+    -create, read, update, destroy
+    -really easy way to begin an application or offer functionality in initial convos w customer
+    -may come back w access control ex: only certain users can delete inventory
+
+-make a DAO to use with some fake data
+-naming convention: PersonListDAO
+    -models.BeanTest.Person - person objects
+    -List - data we are dealing w in an array list
+    -DAO identification
+
+-we will no longer creat our daos directly liek this
+-a factory will do it from now in
+
+Exercise
+
+2. Notes
+b.
+d. Use code up naming conventions

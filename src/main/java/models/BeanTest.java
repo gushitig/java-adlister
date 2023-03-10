@@ -1,5 +1,8 @@
 package models;
 
+import lombok.*;
+
+import java.io.Serializable;
 import java.util.ArrayList;
 
 public class BeanTest {
@@ -57,4 +60,5 @@ public class BeanTest {
 
 
     }
+
 }

@@ -30,18 +30,6 @@
     <INPUT TYPE="submit" VALUE="Submit">
 </form>
 
-<% if (uname != null &&
-        pass != null) {
-    if ((uname.equals("admin")) &&
-            (pass.equals("password"))) {
-        response.sendRedirect("/profile.jsp");
-    } else {
-        response.sendRedirect("/login.jsp");
-    }
-}
-
-%>
-
 
 <%@ include file="partials/footer.jsp" %>
 

@@ -49,12 +49,12 @@ public class Puppy implements Serializable {
 
 **Java tip: keep all the instance variables in one place, typically up top of the method
 
-add private Puppy puppy to the Person class
+add private Puppy puppy to the models.BeanTest.Person class
     -we already know Puppy is serializable bc we made it that way
 
     in main method of person:
     Puppy spot = new Puppy ("Spot");
-    Person bob = new Person("Bob", 42, spot);
+    models.BeanTest.Person bob = new models.BeanTest.Person("Bob", 42, spot);
 
     sout him and see spot
 
