@@ -12,14 +12,6 @@ public class MySQLAdsDao implements Ads{
     private Connection connection = null;
     private List<Ad> ads;
 
-
-    /*public List<Ad> all() {
-        if (ads == null) {
-            ads = generateAds();
-        }
-        return ads;
-    }*/
-
     public MySQLAdsDao(Config config) {
 
         try {
@@ -30,85 +22,63 @@ public class MySQLAdsDao implements Ads{
                     config.getPassword()
             );
         } catch (SQLException e) {
-            throw new RuntimeException("error connection to database", e);
+            throw new RuntimeException("Error connecting to the database!", e);
         }
-
     }
-
-
-
-    public Long insert(Ad ad) {
-        // make sure we have ads
-        if (ads == null) {
-            ads = generateAds();
-        }
-        // we'll assign an "id" here based on the size of the ads list
-        // really the database would handle this
-        ad.setId((long) ads.size());
-        ads.add(ad);
-        return ad.getId();
-    }
-
-
-
-
 
 
     @Override
     public List<Ad> all() {
-        List<Ad> ads = new ArrayList<>();
+        Statement stmt = null;
         try {
-            Statement stmt = connection.createStatement();
-
-            //pulls data from database
+            stmt = connection.createStatement();
             ResultSet rs = stmt.executeQuery("SELECT * FROM ads");
-
-            //rs.next is like everything in a document and will take you to the next line, so once rs.next is complete it will return false which is why we use a while loop
-            while(rs.next()) {
-                ads.add(new Ad(
-                        rs.getLong("id"),
-                        rs.getLong("user_id"),
-                        rs.getString("title"),
-                        rs.getString("description")
-                )); //this will generate our objects from the database
-            }
-            return ads; //returns and creates our list of books we have created now
-
+            return createAdsFromResults(rs);
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            throw new RuntimeException("Error retrieving all ads.", e);
         }
     }
 
 
+    @Override
+    public Long insert(Ad ad) {
+        try {
+            Statement stmt = connection.createStatement();
+            stmt.executeUpdate(createInsertQuery(ad), Statement.RETURN_GENERATED_KEYS);
+            ResultSet rs = stmt.getGeneratedKeys();
+            rs.next();
+            return rs.getLong(1);
+        } catch (SQLException e) {
+            throw new RuntimeException("Error creating a new ad.", e);
+        }
+    }
 
+    private String createInsertQuery(Ad ad) {
+        return "INSERT INTO ads(user_id, title, description) VALUES "
+                + "(" + ad.getUserId() + ", "
+                + "'" + ad.getTitle() +"', "
+                + "'" + ad.getDescription() + "')";
+    }
 
+    private Ad extractAd(ResultSet rs) throws SQLException {
+        return new Ad(
+                rs.getLong("id"),
+                rs.getLong("user_id"),
+                rs.getString("title"),
+                rs.getString("description")
+        );
+    }
 
-    private List<Ad> generateAds() {
+    private List<Ad> createAdsFromResults(ResultSet rs) throws SQLException {
         List<Ad> ads = new ArrayList<>();
-        ads.add(new Ad(
-                1,
-                1,
-                "playstation for sale",
-                "This is a slightly used playstation"
-        ));
-        ads.add(new Ad(
-                2,
-                1,
-                "Super Nintendo",
-                "Get your game on with this old-school classic!"
-        ));
-        ads.add(new Ad(
-                3,
-                2,
-                "Junior Java Developer Position",
-                "Minimum 7 years of experience required. You will be working in the scripting language for Java, JavaScript"
-        ));
-        ads.add(new Ad(
-                4,
-                2,
-                "JavaScript Developer needed",
-                "Must have strong Java skills"
-        ));
+        while (rs.next()) {
+            ads.add(extractAd(rs));
+        }
         return ads;
     }
+
+
+
+
+
 }
