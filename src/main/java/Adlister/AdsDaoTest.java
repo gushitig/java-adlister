@@ -4,8 +4,9 @@ import java.util.List;
 
 public class AdsDaoTest {
     public static void main(String[] args) {
+        Config config = new Config();
 
-        ListAdsDao adDao = new ListAdsDao();
+        MySQLAdsDao adDao = new MySQLAdsDao(config);
         List<Ad> ads = adDao.all();
         System.out.println(ads);
 
