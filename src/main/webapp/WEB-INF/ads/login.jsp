@@ -8,9 +8,9 @@
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
-<%@ include file="partials/head.jsp" %>
+<%@ include file="/WEB-INF/ads/partials/head.jsp" %>
 <body>
-<%@ include file="partials/navbar.jsp" %>
+<%@ include file="/WEB-INF/ads/partials/navbar.jsp" %>
 
 
 
@@ -24,7 +24,7 @@
 </form>
 
 
-<%@ include file="partials/footer.jsp" %>
+<%@ include file="/WEB-INF/ads/partials/footer.jsp" %>
 
 </body>
 </html>

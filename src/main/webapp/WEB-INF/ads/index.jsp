@@ -11,11 +11,11 @@
 
 <html>
 <head>
-    <%@ include file="/partials/head.jsp" %>
+    <%@ include file="/WEB-INF/ads/partials/head.jsp" %>
     <title>RRRadLister Listings</title>
 </head>
 <body>
-<%@ include file="/partials/navbar.jsp" %>
+<%@ include file="/WEB-INF/ads/partials/navbar.jsp" %>
 
 <h2>Listings</h2>
 
@@ -36,6 +36,6 @@
 <br>
 
 
-<%@ include file="/partials/footer.jsp" %>
+<%@ include file="/WEB-INF/ads/partials/footer.jsp" %>
 </body>
 </html>
