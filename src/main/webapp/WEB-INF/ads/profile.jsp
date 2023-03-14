@@ -11,7 +11,7 @@
 <body>
 <%@ include file="/WEB-INF/ads/partials/navbar.jsp" %>
 
-<h1>Welcome to your profile ${uname}!</h1>
+<h1>Welcome, ${uname}!</h1>
 
 <%@ include file="/WEB-INF/ads/partials/footer.jsp" %>
 </body>

@@ -15,7 +15,7 @@ public class LogoutServlet extends HttpServlet {
 
         HttpSession session = request.getSession();
         session.removeAttribute("uname");
-        session.removeAttribute("pass");
+        //session.removeAttribute("pass");
 
         request.getRequestDispatcher("/WEB-INF/ads/login.jsp").forward(request, response);
 
