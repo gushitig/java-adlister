@@ -1,4 +1,4 @@
-package servlets_jsp;
+package Adlister;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,7 +12,7 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 
-        request.getRequestDispatcher("login.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/ads/login.jsp").forward(request, response);
     }
 
 
@@ -27,11 +27,11 @@ public class LoginServlet extends HttpServlet {
 
         if (uname != null && pass != null) {
             if ((uname.equals("admin")) && (pass.equals("password"))) {
-                request.getRequestDispatcher("profile.jsp").forward(request, response);
+                request.getRequestDispatcher("/WEB-INF/ads/profile.jsp").forward(request, response);
                 return;
             } else {
                 //if we get here redispatch login.jsp
-                request.getRequestDispatcher("login.jsp").forward(request, response);
+                request.getRequestDispatcher("/WEB-INF/ads/login.jsp").forward(request, response);
             }
         }
 

@@ -22,7 +22,7 @@ public class CreateAdServlet extends HttpServlet {
                 request.getParameter("description")
         );
         AdsDaoFactory.getAdsDao().insert(ad);
-        response.sendRedirect("/WEB-INF/ads");
+        response.sendRedirect("/ads");
     }
 }
 

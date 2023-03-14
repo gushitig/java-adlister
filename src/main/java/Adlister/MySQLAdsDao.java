@@ -33,7 +33,11 @@ public class MySQLAdsDao implements Ads{
         try {
             stmt = connection.createStatement();
             ResultSet rs = stmt.executeQuery("SELECT * FROM ads");
-            return createAdsFromResults(rs);
+            List<Ad> ads = new ArrayList<>();
+            while (rs.next()) {
+                ads.add(extractAd(rs));
+            }
+            return ads;
         } catch (SQLException e) {
             throw new RuntimeException("Error retrieving all ads.", e);
         }
@@ -73,14 +77,7 @@ public class MySQLAdsDao implements Ads{
                 rs.getString("description")
         );
     }
-
-    private List<Ad> createAdsFromResults(ResultSet rs) throws SQLException {
-        List<Ad> ads = new ArrayList<>();
-        while (rs.next()) {
-            ads.add(extractAd(rs));
-        }
-        return ads;
-    }
+    
 
 
 

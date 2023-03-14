@@ -25,11 +25,11 @@ public class CreateBookServlet extends HttpServlet {
                 request.getParameter("title"),
                 request.getParameter("author")
         );
-        if(BooksDaoFactory.getBooksDao().insert(newBook)){
+        /*if(BooksDaoFactory.getBooksDao().insert(newBook)){
             response.sendRedirect("/books");
         } else {
             response.sendRedirect("/books/create?error");
-        }
+        }*/
 
     }
 }
