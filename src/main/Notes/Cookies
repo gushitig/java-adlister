@@ -27,7 +27,7 @@ Real world example
 key/value pairs
 
 Session Tracking w Java
--using the built in functionalityt sessions in this course
+-using the built in functionality sessions in this course
 -wont interact w cookies directly
 -interacting w a session object that is provided with the servlet library
 -w Java Servlets it automatically uses cookies to track for each browser

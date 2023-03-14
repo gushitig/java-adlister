@@ -11,7 +11,7 @@
 <body>
 <%@ include file="/WEB-INF/ads/partials/navbar.jsp" %>
 
-<p>You da admin suckaaa</p>
+<h1>Welcome to your profile ${uname}!</h1>
 
 <%@ include file="/WEB-INF/ads/partials/footer.jsp" %>
 </body>
