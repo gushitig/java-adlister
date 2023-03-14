@@ -15,8 +15,11 @@
 
 <h1>Here are all the books!</h1>
 <c:forEach var="book" items="${books}">
-    <h2>${book.title}</h2>
-    <h2>By: ${book.author}</h2>
+
+    <h3>
+        <c:out value="${book.title}" />
+        <small><c:out value="${book.author}" /></small>
+    </h3>
 
 </c:forEach>
 

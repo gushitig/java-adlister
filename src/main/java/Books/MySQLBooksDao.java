@@ -34,10 +34,12 @@ public class MySQLBooksDao implements Books {
     public List<Book> all() {
         List<Book> books = new ArrayList<>();
         try {
-            Statement stmt = connection.createStatement();
+            //***** changes to make a prepared statement
+            String sql = "SELECT * FROM books_example.books"; //*******
+            PreparedStatement stmt = connection.prepareStatement(sql); //*****
 
             //pulls data from database
-            ResultSet rs = stmt.executeQuery("SELECT * FROM books_example.books");
+            ResultSet rs = stmt.executeQuery(); //*******
 
             //rs.next is like everything in a document and will take you to the next line, so once rs.next is complete it will return false which is why we use a while loop
             while(rs.next()) {
@@ -54,6 +56,23 @@ public class MySQLBooksDao implements Books {
         }
 
 
+    }
+
+    //***** changes to make for prepared statement
+    public long insert(Book book) {
+        String sql = "INSERT INTO books (title, author) VALUES (?, ?)";
+        try {
+            PreparedStatement stmt = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            stmt.setString(1, book.getTitle());
+            stmt.setString(2, book.getAuthor());
+            stmt.executeUpdate();
+            ResultSet rs = stmt.getGeneratedKeys();
+            rs.next();
+            return rs.getLong(1);
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
 

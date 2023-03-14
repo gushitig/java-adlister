@@ -1,0 +1,100 @@
+Cookies
+
+-a way to track you
+-server gives each browser a unique cookie
+-the unique cookie will be the key to the key/value pair
+-possible to store info to cookies, but its just an identifier
+- used to dentify the user and retrieve ther session data on request
+
+Session
+
+-server side that completes the cookies
+-the info we want to track from our user
+-sessions
+
+Purpose
+
+-user does not have to enter info every time
+-personalization of a website
+-tracks a users identity
+    -pages visited, links clicked (marketing)
+
+Real world example
+
+-adding an item to the cart is just cookies and sessions
+-nike made it so that even if you close the browser the cookie keeps your items in the cart
+
+key/value pairs
+
+Session Tracking w Java
+-using the built in functionalityt sessions in this course
+-wont interact w cookies directly
+-interacting w a session object that is provided with the servlet library
+-w Java Servlets it automatically uses cookies to track for each browser
+
+Working w Sessions Examples
+language exmaple:
+doPost {
+
+//get session object from the request
+HttpSession session = request.getSession();
+
+//Set a session attribute to store users lang pref
+session.setAttribute("language", "en-us");
+
+//retrieve the session attribute to determine the users lang
+String languagePreferences = (String) session.getAttribute("language");
+
+//use the lan pref to render the page content
+if (languagePreference.equals("en-us")) {
+//render content in english
+} else if (languagePreference.equals("fr-fr")) {
+//render content in french
+} else {
+//render page content in default lang
+}
+
+}
+
+
+
+user and pass example:
+
+doPost {
+
+//get session username and pass from the request parameters
+String username = request.getParameter("username");
+String pass = request.getParameter("pass");
+
+//validate user and pass
+if (username.equals("admin") && pass.equals("pass")) {
+//if valid, create a session
+Httpsession session = request.getSession();
+session.setAttribute("username", username);
+//redirect to welcome page
+response.sendRedirect("WelcomeServlet");
+
+}  else {
+//if not valid show error message
+}
+
+}
+
+
+
+Restricting public access
+WEB-INF
+is the folder we are going to keep our jsps from now on bc it hides the jsp automatically for us
+    -gonna have to change file paths tho
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,16 @@
+-cross eyed scripting attack is someone just entering script into a user input form
+    -prevent this by using jstl:
+    <c:out value="${book.title}" />
+    <c:out value="${book.author}" />
+
+    -so not allowing it to be inserted as script, but as a string, so it wont read it as code
+
+
+
+
+-breaking our programs when a user enters a ' in a contraction or something, becasue it registers it as code
+    -using a prepared statement can prevent this
+
+
+
+-if youre only making a change the database info, you dont have to redeploy to see the changes
