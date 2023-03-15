@@ -24,9 +24,13 @@ public class RegisterServlet extends HttpServlet {
         // TODO: if a user was successfully created, send them to their profile
 
         String username = request.getParameter("username");
+        System.out.println(username);
         String email = request.getParameter("email");
+        System.out.println(email);
         String password = request.getParameter("password");
-        String passwordConfirmation = request.getParameter("confirm_password");
+        System.out.println(password);
+        String passwordConfirmation = request.getParameter("passwordConfirmation");
+        System.out.println(passwordConfirmation);
 
         boolean inputError = username.isEmpty()
                 || email.isEmpty()
