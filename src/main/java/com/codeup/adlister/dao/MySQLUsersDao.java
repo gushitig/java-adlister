@@ -25,9 +25,9 @@ public class MySQLUsersDao implements Users{
 
     @Override
     public User findByUsername(String username) {
-        String userQuery = "SELECT * FROM user WHERE username = ? LIMIT 1";
+        PreparedStatement stmt = null;
         try {
-            PreparedStatement stmt = connection.prepareStatement(userQuery);
+            stmt = connection.prepareStatement("SELECT * FROM user WHERE username = ?");
 
             stmt.setString(1, username);
 
@@ -69,6 +69,12 @@ public class MySQLUsersDao implements Users{
         );
     }
 
+    public static void main(String[] args) {
+        //test the users dao
+        Users dao = DaoFactory.getUsersDao();
+        //try something that doesnt exist as well as something that does
+        System.out.println(dao.findByUsername("Tig").getUsername());
+    }
 
 }
 
