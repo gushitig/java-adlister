@@ -15,7 +15,7 @@
 <body>
 <jsp:include page="/WEB-INF/partials/navbar.jsp" />
 
-<form>
+<form method="post" action="/WEB-INF/register">
   <div class="form-group row">
     <label for="username" class="col-sm-2 col-form-label">Username</label>
     <div class="col-sm-10">
