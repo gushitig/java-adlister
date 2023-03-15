@@ -15,7 +15,7 @@ public class LogoutServlet extends HttpServlet {
 
         HttpSession session = request.getSession();
         session.removeAttribute("uname");
-        //session.removeAttribute("pass");
+        //could also have used session.invalidate(); and it owuld have cleared everything out
 
         request.getRequestDispatcher("/WEB-INF/ads/login.jsp").forward(request, response);
 

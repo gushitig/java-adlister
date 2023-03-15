@@ -15,6 +15,7 @@ public class ProfileServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         HttpSession session = request.getSession();
         String uname = (String) session.getAttribute("uname");
+        request.setAttribute("uname", uname);
         if (request.getSession().getAttribute("uname") == null) {
             response.sendRedirect("/login");
             return;

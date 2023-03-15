@@ -13,7 +13,9 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 
-        if (request.getSession().getAttribute("user") != null) {
+        HttpSession session = request.getSession();
+
+        if (session.getAttribute("user") != null) {
             response.sendRedirect("/profile");
             return;
         }
@@ -28,10 +30,12 @@ public class LoginServlet extends HttpServlet {
         String uname = request.getParameter("uname");
         String pass = request.getParameter("pass");
 
+        HttpSession session = request.getSession();
+
         if (uname != null && pass != null) {
             if ((uname.equals("admin")) && (pass.equals("password"))) {
                 //request.getRequestDispatcher("/WEB-INF/ads/profile.jsp").forward(request, response);
-                HttpSession session = request.getSession();
+
                 session.setAttribute("uname", uname);
 
                 response.sendRedirect("/profile");

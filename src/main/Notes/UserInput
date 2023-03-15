@@ -1,4 +1,89 @@
--cross eyed scripting attack is someone just entering script into a user input form
+-Query to login from a list of users in the database:
+SELECT count(id) as count_id //*** returns how many records match, 0 if none
+FROM users
+WHERE name = 'bob'
+AND password = '123';
+
+if it doesnt match we get an empty table
+if it does we get a record
+
+it works but the issue is that we pass this through string concatenation
+
+common way of doing this, but vulnerable to attack
+SELECT count(id) as count_id
+FROM users
+WHERE name = 'bob'
+AND password = '123';
+
+if attack pw = 1234' or 1 = 1 #' (something that is always true)
+an OR only needs one to be true and it will pass
+it would return as true
+
+it returns 6 records
+if i put a zero check in there, it would allow the attack through
+if i put a one check in there, its better but if theres only one user, it would allow the attack through
+
+-SQL Injection is what this is called, still a top 10 web attack
+(so dont try any of this attack stuff irl, you could be prosecuted lol)
+
+ways to defend:
+-blacklisting: check user passwords for executable code
+-whitelisting
+
+neither of the above are great options so use:
+-parameterized queries or prepared statements: any user input should NEVER be concatenated into a query
+
+
+String sql = "SELECT * FROM products WHERE name LIKE ?";
+String searchTermWithWildcards = "%" + searchTerm + "%";
+
+PreparedStatement stmt = connection.prepareStatement(sql);
+stmt.setString(1, searchTermWithWildcards);
+
+ResultSet rs = stmt.executeQuery();
+while(rs.next()) {
+    // do something with the search results
+}
+
+*** notice there are no single quotes around the ?
+
+-when in doubt, use prepared statements when dealing w anything w user input
+
+
+Cross site scripting (or XSS)
+-also a top 10
+-very simple to do
+-way to create script thats executable
+-to the database its text, but to the application its executable
+-so we could include any JS like an infinite loop, we could do fetches, we could read cookies and transmit the information somewhere
+
+can make this safe by just dispalying it rather than allowing it to be executable through the JSTL library's c:out tag
+
+Example:
+<h1>Product Search Results</h1>
+<h2>Showing Results for <c:out value="${searchTerm}" /></h2>
+<c:forEach var="product" items="${searchResults}">
+    <h3>
+        <c:out value="${product.name}" />
+        <small><c:out value="${product.price}" /></small>
+    </h3>
+</c:forEach>
+
+this is called sanitizing your code
+
+
+-develop your own personal development rules for clean and secure code
+
+
+
+
+
+
+
+
+
+OTHER INSTRUCTOR
+-cross site scripting attack is someone just entering script into a user input form
     -prevent this by using jstl:
     <c:out value="${book.title}" />
     <c:out value="${book.author}" />
@@ -8,7 +93,7 @@
 
 
 
--breaking our programs when a user enters a ' in a contraction or something, becasue it registers it as code
+-breaking our programs when a user enters a ' in a contraction or something, because it registers it as code
     -using a prepared statement can prevent this
 
 
