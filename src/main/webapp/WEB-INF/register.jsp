@@ -15,29 +15,29 @@
 <body>
 <jsp:include page="/WEB-INF/partials/navbar.jsp" />
 
-<form method="post" action="/WEB-INF/register">
+<form action="/register" method="POST">
   <div class="form-group row">
     <label for="username" class="col-sm-2 col-form-label">Username</label>
     <div class="col-sm-10">
-      <input type="user" class="form-control" id="username" placeholder="User">
+      <input type="text" class="form-control" id="username" name="username">
     </div>
   </div>
   <div class="form-group row">
     <label for="email" class="col-sm-2 col-form-label">Email</label>
     <div class="col-sm-10">
-      <input type="email" class="form-control" id="email" placeholder="Email">
+      <input type="email" class="form-control" id="email" name="email">
     </div>
   </div>
   <div class="form-group row">
     <label for="password" class="col-sm-2 col-form-label">Password</label>
     <div class="col-sm-10">
-      <input type="password" class="form-control" id="password" placeholder="Password">
+      <input type="password" class="form-control" id="password" name="password">
     </div>
   </div>
   <div class="form-group row">
     <label for="passwordConfirmation" class="col-sm-2 col-form-label">Password Confirmation</label>
     <div class="col-sm-10">
-      <input type="password" class="form-control" id="passwordConfirmation" placeholder="Retype Password to Confirm">
+      <input type="password" class="form-control" id="passwordConfirmation" name="passwordConfirmation">
     </div>
   </div>
 
