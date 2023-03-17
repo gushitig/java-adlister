@@ -25,9 +25,6 @@ public class RegisterServlet extends HttpServlet {
         String password = request.getParameter("password");
 
         String hash = hash(password);
-        System.out.println(password);
-        System.out.println(hash);
-        System.out.println(password);
 
         String passwordConfirmation = request.getParameter("confirm_password");
 

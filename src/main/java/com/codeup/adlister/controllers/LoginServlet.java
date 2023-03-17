@@ -25,10 +25,9 @@ public class LoginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
-        System.out.println(password);
         User user = DaoFactory.getUsersDao().findByUsername(username);
         String hash = user.getPassword();
-        System.out.println(hash);
+
 
         if (user == null) {
             response.sendRedirect("/login");
